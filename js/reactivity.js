@@ -4,13 +4,13 @@ function showResults(resp) {
         output.innerHTML = "";
         console.log(resp)
         if(resp === undefined){
-        	output.innerHTML = "Intenta de nuevo :)";
+        	output.innerHTML = "Something went wrong at Giphy's end, please try again with a different search.";
         	return;
         }
         var items = resp.data;
         animationDelay = 0;
         if (items.length == 0) {
-            output.innerHTML = "No encontramos gifs :(";
+            output.innerHTML = "Nothing was found :(";
         } else {
             items.forEach(item => {
                 resultItem = `
@@ -28,7 +28,7 @@ function showResults(resp) {
             });
         }
 }
-const TRENDING_URL = "https://api.giphy.com/v1/gifs/trending?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&limit=12";
+const TRENDING_URL = "https://api.giphy.com/v1/gifs/trending?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&limit=10";
 
 // Se hace una carga inicial 
 Rx.Observable.ajax(TRENDING_URL)
