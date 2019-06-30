@@ -10,10 +10,12 @@ function showResults(resp) {
             items.forEach(item => {
                 resultItem = `
                         <div class="animated fadeInUp" style="animation-delay: ${animationDelay}s">
+                        <a href="${item.url}" target="_blank">
                         <video autoplay loop>
                             <source src="${item.images.fixed_width_small.mp4}" type="video/mp4">
                             <p>Your browser does not support the video tag.</p>
                         </video>
+                        </a>
                 `;
                 output.insertAdjacentHTML("beforeend", resultItem);
                 animationDelay += 0.1;
@@ -41,7 +43,7 @@ function showResults(resp) {
         .filter(searchTerm => searchTerm.length > 2)
         .debounceTime(500)
         .distinctUntilChanged()
-        .switchMap(searchKey => Rx.Observable.ajax.getJSON(`https://api.giphy.com/v1/gifs/search?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&q=${searchKey}&limit=12`)
+        .switchMap(searchKey => Rx.Observable.ajax(`https://api.giphy.com/v1/gifs/search?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&q=${searchKey}&limit=12`)
             .map(resp => ({
                     "status": resp["status"] == 200,
                     "details": resp["status"] == 200 ? resp["response"] : [],
