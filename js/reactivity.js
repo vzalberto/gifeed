@@ -6,17 +6,18 @@ function showResults(resp) {
         output.innerHTML = "";
         console.log(resp)
         if(resp === undefined){
-        	output.innerHTML = "Something went wrong at Giphy's end, please try again with different keywords.";
+        	output.innerHTML = "Something went wrong at Giphy's end 🙉, please try again with different keywords 🙊.";
         	return;
         }
         var items = resp.data;
         animationDelay = 0;
         if (items.length == 0) {
-            output.innerHTML = "Nothing was found :(";
+            output.innerHTML = "Nothing was found 🙃";
         } else {
             items.forEach(item => {
+            	// Se utilizó el tag <video> para evitar las marcas de agua de Giphy
                 resultItem = `
-                        <div class="animated fadeInUp" style="animation-delay: ${animationDelay}s">
+                        <div class="animated fadeInUp videoElement" style="animation-delay: ${animationDelay}s">
                         <a href="${item.url}" target="_blank">
                         <video autoplay loop>
                             <source src="${item.images.fixed_width_small.mp4}" type="video/mp4">
