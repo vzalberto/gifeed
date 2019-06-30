@@ -4,7 +4,7 @@ function showResults(resp) {
         output.innerHTML = "";
         console.log(resp)
         if(resp === undefined){
-        	output.innerHTML = "Something went wrong at Giphy's end, please try again with a different search.";
+        	output.innerHTML = "Something went wrong at Giphy's end, please try again with a different search term.";
         	return;
         }
         var items = resp.data;
