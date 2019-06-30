@@ -30,16 +30,18 @@ function showResults(resp) {
 
     const TRENDING_URL = "https://api.giphy.com/v1/gifs/trending?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&limit=12";
 
-    // Rx.Observable.ajax.getJSON(TRENDING_URL)
-    // .map(resp => ({
-    //                 "status": resp["status"] == 200,
-    //                 "details": resp["status"] == 200 ? resp["response"] : [],
-    //                 "result_hash": Date.now()
-    //             })
-    // )
-    // .filter(resp => resp.status !== false)
-    // .distinctUntilChanged((a, b) => a.result_hash === b.result_hash)
-    // .subscribe(resp => showResults(resp.details))
+Rx.Observable.ajax(TRENDING_URL)
+            .map(resp => ({
+                    "status": resp["status"] == 200,
+                    "details": resp["status"] == 200 ? resp["response"] : [],
+                    "result_hash": Date.now()
+                })
+            )
+
+	        .catch(err => Rx.Observable.of({err})
+	        )
+        	.filter(resp => resp.status !== false)
+			.subscribe(resp => showResults(resp.details));
 
     let searchInput = document.getElementById("search-input");
     Rx.Observable.fromEvent(searchInput, 'input')
