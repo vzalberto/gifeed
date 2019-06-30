@@ -20,7 +20,7 @@ function showResults(resp) {
 
             });
         }
-    }
+}
 
     const TRENDING_URL = "https://api.giphy.com/v1/gifs/trending?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&limit=12&rating=G";
 
@@ -41,7 +41,7 @@ function showResults(resp) {
         .filter(searchTerm => searchTerm.length > 2)
         .debounceTime(500)
         .distinctUntilChanged()
-        .switchMap(searchKey => Rx.Observable.ajax(`https://api.giphy.com/v1/gifs/search?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&q=${searchKey}&limit=12`)
+        .switchMap(searchKey => Rx.Observable.ajax.getJSON(`https://api.giphy.com/v1/gifs/search?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&q=${searchKey}&limit=12`)
             .map(resp => ({
                     "status": resp["status"] == 200,
                     "details": resp["status"] == 200 ? resp["response"] : [],
