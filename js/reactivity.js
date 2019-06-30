@@ -5,7 +5,7 @@ function showResults(resp) {
         output.innerHTML = "";
         animationDelay = 0;
         if (items.length == 0) {
-            output.innerHTML = "Could not find any :(";
+            output.innerHTML = "No encontramos gifs :(";
         } else {
             items.forEach(item => {
                 resultItem = `
@@ -41,7 +41,7 @@ function showResults(resp) {
         .filter(searchTerm => searchTerm.length > 2)
         .debounceTime(500)
         .distinctUntilChanged()
-        .switchMap(searchKey => Rx.Observable.ajax(`https://api.giphy.com/v1/gifs/search?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&q=${searchKey}&limit=12&offset=0&rating=G&lang=en`)
+        .switchMap(searchKey => Rx.Observable.ajax(`https://api.giphy.com/v1/gifs/search?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&q=${searchKey}&limit=12`)
             .map(resp => ({
                     "status": resp["status"] == 200,
                     "details": resp["status"] == 200 ? resp["response"] : [],
