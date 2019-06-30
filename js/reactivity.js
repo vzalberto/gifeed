@@ -1,5 +1,7 @@
 const output = document.getElementById("response-list");
-let searchInput = document.getElementById("search-input");
+const searchInput = document.getElementById("search-input");
+const TRENDING_URL = "https://api.giphy.com/v1/gifs/trending?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&limit=10";
+
 function showResults(resp) {
         output.innerHTML = "";
         console.log(resp)
@@ -28,7 +30,6 @@ function showResults(resp) {
             });
         }
 }
-const TRENDING_URL = "https://api.giphy.com/v1/gifs/trending?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&limit=10";
 
 // Se hace una carga inicial 
 Rx.Observable.ajax(TRENDING_URL)
@@ -44,10 +45,16 @@ Rx.Observable.ajax(TRENDING_URL)
 	.filter(resp => resp.status !== false)
 	.subscribe(resp => showResults(resp.details));
 
+//Este observable está ligado al <input>
 Rx.Observable.fromEvent(searchInput, 'input')
         .pluck('target', 'value')
+        // Solo consideramos los términos con 3 o más caracteres, o una cadena vacía para mostrar el top 10
         .filter(searchTerm => searchTerm.length > 2 || searchTerm === "")
+
+        //Este delay ayuda a evitar que se haga una consulta si el usuario continúa escribiendo
         .debounceTime(500)
+
+        //Solo cuando exista un cambio se volvera a consultar a la api
         .distinctUntilChanged()
         .switchMap(searchKey => 
         	searchKey !== "" ? 
