@@ -4,32 +4,44 @@ const TRENDING_URL = "https://api.giphy.com/v1/gifs/trending?api_key=KQzPKVUFZUI
 
 function showResults(resp) {
         output.innerHTML = "";
-        console.log(resp)
         if(resp === undefined){
         	output.innerHTML = "Something went wrong at Giphy's end 🙉, please try again with different keywords 🙊.";
         	return;
         }
         var items = resp.data;
-        animationDelay = 0;
+
         if (items.length == 0) {
             output.innerHTML = "Nothing was found 🙃";
         } else {
+            output.insertAdjacentHTML("beforeend", "<div class='grid-sizer col-xs-3'></div>");
             items.forEach(item => {
+
             	// Se utilizó el tag <video> para evitar las marcas de agua de Giphy
                 resultItem = `
-                        <div class="animated fadeInUp videoElement" style="animation-delay: ${animationDelay}s">
-                        <a href="${item.url}" target="_blank">
-                        <video autoplay loop>
-                            <source src="${item.images.fixed_width_small.mp4}" type="video/mp4">
-                            <p>Your browser does not support the video tag.</p>
-                        </video>
-                        </a>
+                        <div class="grid-item col-xs-3">
+                            <div class="grid-item-content">
+                                <a href="${item.url}" target="_blank">
+                                    <video autoplay loop>
+                                        <source src="${item.images.fixed_width_small.mp4}" type="video/mp4">
+                                        <p>Your browser does not support the video tag.</p>
+                                    </video>
+                                </a>
+                            </div>
+                        </div>
                 `;
                 output.insertAdjacentHTML("beforeend", resultItem);
-                animationDelay += 0.1;
-
-            });
+            }
+            );
         }
+        var msnry = new Masonry( '.grid', {
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-sizer',
+  percentPosition: true,
+  transitionDuration: 0,
+  initLayout: false,
+});
+                msnry.layout();
+                console.log(msnry);
 }
 
 // Se hace una carga inicial 

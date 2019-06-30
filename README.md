@@ -4,3 +4,5 @@ Nice to haves:
 •	Infinite scroll, of course.
 •	Gradient background.
 •	Masonry layout.
+
+https://www.digitalocean.com/community/tutorials/how-to-build-a-search-bar-with-rxjs

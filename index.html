@@ -1,9 +1,11 @@
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"/>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./css.css">
+  <link rel="stylesheet" type="text/css" href="./mason.css">
 </head>
 
 <body>
@@ -18,13 +20,16 @@
     </div>
   </div>
   <!-- Results -->
-  <div class="container results-container">
-      <div class="row justify-content-center">
-          <div class="col-sm-8">
-              <ul id="response-list" class="list-group list-group-flush"></ul>
-          </div>
-      </div>
+  <div class="container-fluid">
+    <div id="response-list" class="grid">
+    </div>
   </div>
+  <!-- Masonry  JS-->
+
+  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+  <script type="text/javascript" src="js/mason.js"></script>
+
+  <!-- RxJS -->
   <script src="https://unpkg.com/@reactivex/rxjs@5.0.3/dist/global/Rx.js"></script>
   <script type="text/javascript" src="js/reactivity.js"></script>
 </body>
