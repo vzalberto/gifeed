@@ -11,13 +11,13 @@ To help me conceptualize the design and subdivide into tasks, I had to ask mysel
 3. How does it look? 
 
 
-###What is there?
+### What is there?
 At the very least, there is an input tag and a container for the gifs.
 
-###How does it work?
+### How does it work?
 A query to Giphy's Search API is made whenever the user stops typing. If the input tag is left blank, the query will be made to Giphy's Trending API. Such query will also be made right after loading the application for  the first time.
 
-###How does it look?
+### How does it look?
 
 Returned gifs are laid out in a three column grid with no unnecessary white space as a result of rendering elements with different heights. (a little bit like [Pinterest](https://pinterest.com))
 
