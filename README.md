@@ -12,7 +12,7 @@ To help me conceptualize the design and subdivide into tasks, I had to ask mysel
 
 
 ### What is there?
-At the very least, there is an input tag and a container for the gifs. 
+At the very least, there is an input tag and a container for the gifs. The gif elements, which are actually videos, are created on the fly and appended to the grid after the requests return from Giphy. Thinking about it that way seems obvious, but it does help destructuring the application files.
 
 
 ### How does it work?
