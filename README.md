@@ -36,7 +36,6 @@ Returned gifs are laid out in a three column grid with no unnecessary white spac
 
 • Infinite scroll, of course.
 
-• Gradient background.
+• Gradient background?.
 
-### Inspiration
-
+• Pinning the search bar to the Masonry grid so that the elements will flow around it.
