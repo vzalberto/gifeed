@@ -20,7 +20,7 @@ A query to Giphy's Search API is made whenever the user stops typing. If the inp
 
 Traditionally, I'd go with a Vue or React template project to take care of binding the input tag contents with an AJAX request. However, that sounds and feels like an overkill. I felt like this was the time to finally dip my toes in the world of observables. 
 
-I stumbled upon this post [How to build a search bar with RxJS](https://www.digitalocean.com/community/tutorials/how-to-build-a-search-bar-with-rxjs) and tailored the code to the needs of the project. Since it is a fairly straight forward solution, I had to comment the code in order to soldify my understanding of the new concepts I was dealing with. As one senior front end developer once told (warned) me, observables will open your mind to new ways of designing and thinking about web applications. Now I can barely, but firmly, confirm that affirmation.
+I stumbled upon this post [How to build a search bar with RxJS](https://www.digitalocean.com/community/tutorials/how-to-build-a-search-bar-with-rxjs) and tailored the code to the needs of the project. Since it is a fairly straight forward solution, I had to comment the code in order to soldify my understanding of the new concepts I was dealing with. As one more seasoned frontend developer once told (warned) me, observables will open your mind to new ways of designing and thinking about web applications. Now I can barely, but firmly, confirm that affirmation.
 
 
 ### How does it look?
