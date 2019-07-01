@@ -1,8 +1,6 @@
 body
 {
-    background: rgb(2,0,36);
-    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(45,69,104,1) 35%, rgba(0,212,255,1) 100%);
-    font-family: "Roboto", sans-serif;
+font-family: "Roboto", sans-serif;
 }
 
         .search-container {
@@ -23,8 +21,5 @@ body
         }
 
 .container-fluid {
-    margin: auto;
     margin-top: 50px;
-
-    width: 80%;
 }

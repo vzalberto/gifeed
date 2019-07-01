@@ -13,12 +13,12 @@ function showResults(resp) {
         if (items.length == 0) {
             output.innerHTML = "Nothing was found 🙃";
         } else {
-            output.insertAdjacentHTML("beforeend", "<div class='grid-sizer col-xs-3'></div>");
+            output.insertAdjacentHTML("beforeend", "<div class='grid-sizer col-xs-4'></div>");
             items.forEach(item => {
 
             	// Se utilizó el tag <video> para evitar las marcas de agua de Giphy
                 resultItem = `
-                        <div class="grid-item col-xs-3">
+                        <div class="grid-item col-xs-4">
                             <div class="grid-item-content">
                                 <a href="${item.url}" target="_blank">
                                     <video autoplay loop>
