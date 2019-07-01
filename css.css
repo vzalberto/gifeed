@@ -23,3 +23,6 @@ font-family: "Roboto", sans-serif;
 .container-fluid {
     margin-top: 50px;
 }
+
+.grid-sizer,
+.grid-item { width: 33%; }
