@@ -29,7 +29,7 @@ Returned gifs are laid out in a three column grid with no unnecessary white spac
 
 [Masonry](https://masonry.desandro.com/) helps you deal with that kind of requirement. 
 
-### Takeaways
+### Takeaways
 
 • The simpler the application, the more easily flaws are noticed.
 • RxJS is a game changer and I plan to dive deeper into it.
