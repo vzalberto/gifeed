@@ -35,6 +35,8 @@ Returned gifs are laid out in a three column grid with no unnecessary white spac
 
 • RxJS is a game changer and I plan to dive deeper into it.
 
+• Masonry may have been too much for this project.
+
 
 ### Nice to haves:
 

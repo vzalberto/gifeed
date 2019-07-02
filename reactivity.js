@@ -2,21 +2,28 @@ const output = document.getElementById("response-list");
 const searchInput = document.getElementById("search-input");
 const TRENDING_URL = "https://api.giphy.com/v1/gifs/trending?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&limit=10";
 
+//This function handles Giphy's responses, wether they come from Trending or Search.
 function showResults(resp) {
+
+        //The API calls seem to randomly fail due to CORS configuration on Giphy's server, we need to handle that.
         output.innerHTML = "";
         if(resp === undefined){
         	output.innerHTML = "Something went wrong at Giphy's end 🙉, please try again with different keywords 🙊.";
         	return;
         }
+
         var items = resp.data;
 
         if (items.length == 0) {
             output.innerHTML = "Nothing was found 🙃";
         } else {
+
+            //This element is needed for Masonry-Bootstrap solution https://masonry.desandro.com/extras.html#bootstrap
             output.insertAdjacentHTML("beforeend", "<div class='grid-sizer col-xs-4'></div>");
+
+            //Following lines will create a .grid-item element and insert it to the HTML
             items.forEach(item => {
 
-            	// Se utilizó el tag <video> para evitar las marcas de agua de Giphy
                 resultItem = `
                         <div class="grid-item col-xs-4">
                             <div class="grid-item-content">
@@ -33,18 +40,19 @@ function showResults(resp) {
             }
             );
         }
+
+        //A new Masonry instance is created. This is not optimal. Here's when I realized that using Masonry may have been an overkill.
         var msnry = new Masonry( '.grid', {
-  itemSelector: '.grid-item',
-  columnWidth: '.grid-sizer',
-  percentPosition: true,
-  transitionDuration: 0,
-  initLayout: false,
-});
-                msnry.layout();
-                console.log(msnry);
+          itemSelector: '.grid-item',
+          columnWidth: '.grid-sizer',
+          percentPosition: true,
+          transitionDuration: 0,
+          initLayout: false,
+        });
+        msnry.layout();
 }
 
-// Se hace una carga inicial 
+// This observable triggers an initial load of gifs as soon as the page loads.
 Rx.Observable.ajax(TRENDING_URL)
 	.map(resp => ({
 	        "status": resp["status"] == 200,
@@ -58,17 +66,20 @@ Rx.Observable.ajax(TRENDING_URL)
 	.filter(resp => resp.status !== false)
 	.subscribe(resp => showResults(resp.details));
 
-//Este observable está ligado al <input>
+//This observable is tied to the input element and it is the heart of the application.
 Rx.Observable.fromEvent(searchInput, 'input')
         .pluck('target', 'value')
-        // Solo consideramos los términos con 3 o más caracteres, o una cadena vacía para mostrar el top 10
+
+        // We only take into account search terms with 3 or more characters. Empty strings are used to trigger the top 10 trending query.
         .filter(searchTerm => searchTerm.length > 2 || searchTerm === "")
 
-        //Este delay ayuda a evitar que se haga una consulta si el usuario continúa escribiendo
+        //This delay helps prevent queries from happening if the user isn't done typing.
         .debounceTime(500)
 
-        //Solo cuando exista un cambio se volvera a consultar a la api
+        //A new request will occur only if the search terms are different.
         .distinctUntilChanged()
+
+        // The main difference between RxJS's map and  switchMap is that the latter allows us to return an observable.
         .switchMap(searchKey => 
         	searchKey !== "" ? 
         	Rx.Observable.ajax(`https://api.giphy.com/v1/gifs/search?api_key=KQzPKVUFZUIpii6iYFGNphMc7ujV6UcR&q=${searchKey}&limit=12`)
